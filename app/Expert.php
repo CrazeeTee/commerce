@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ExpertResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Expert extends Authenticatable
@@ -27,6 +28,17 @@ class Expert extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ExpertResetPasswordNotification($token));
+    }
 
     /**
      * Set the Route model binder
