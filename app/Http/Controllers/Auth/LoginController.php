@@ -174,7 +174,7 @@ class LoginController extends Controller
 
             $this->guard()->logout();
 
-            return redirect('/login')->with('error', 'Please activate your account. <a href="' .route('resend.email'). '?email=' .$user->email. '">Resend</a>');
+            return redirect()->route('login')->with('error', 'Please activate your account. <a href="' .route('resend.email'). '?email=' .$user->email. '">Resend</a>');
         endif;
     }
 

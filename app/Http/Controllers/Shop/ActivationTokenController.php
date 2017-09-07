@@ -19,7 +19,7 @@ class ActivationTokenController extends Controller
 
         $token->delete();
 
-        return redirect('shop/home')->with('success', 'Email verified and activated. Thank you');
+        return redirect()->route('shop.index')->with('success', 'Email verified and activated. Thank you');
     }
 
     public function resend(Request $request)
@@ -27,12 +27,12 @@ class ActivationTokenController extends Controller
         $shop = Shop::byEmail($request->email);
 
         if ($shop->active):
-            return redirect('/shop')->with('info', 'Already verified');
+            return redirect()->route('shop.login')->with('info', 'Already verified');
         endif;
 
         event(new ShopRequestActivationEmail($shop));
 
-        return redirect('/shop')->with('info', 'Verification email resent.');
+        return redirect()->route('shop.login')->with('info', 'Verification email resent.');
     }
 
     /**

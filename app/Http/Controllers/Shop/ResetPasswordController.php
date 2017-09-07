@@ -146,7 +146,7 @@ class ResetPasswordController extends Controller
     {
         if (! $this->guard()->user()->active ):
             $this->guard()->logout();
-            return redirect('/shop')->with('info', 'Password changed but still need to activate email.');
+            return redirect()->route('shop.login')->with('info', 'Password changed but still need to activate email.');
         endif;
 
         return redirect($this->redirectPath())->with('status', trans($response));

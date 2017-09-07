@@ -20,10 +20,10 @@ class ActivationTokenController extends Controller
         $token->delete();
 
         if (!$token->admin->admin()):
-            return redirect('moderator/home')->with('success', 'Email verified and activated. Thank you');
+            return redirect()->route('moderator.index')->with('success', 'Email verified and activated. Thank you');
         endif;
 
-        return redirect('admin/home')->with('success', 'Email verified and activated. Thank you');
+        return redirect()->route('admin.index')->with('success', 'Email verified and activated. Thank you');
     }
 
     public function resend(Request $request)
@@ -31,12 +31,12 @@ class ActivationTokenController extends Controller
         $admin = Admin::byEmail($request->email);
 
         if ($admin->active):
-            return redirect('/')->with('info', 'Already verified');
+            return redirect()->route('admin.login')->with('info', 'Already verified');
         endif;
 
         event(new AdminRequestActivationEmail($admin));
 
-        return redirect('/admin')->with('info', 'Verification email resent.');
+        return redirect()->route('admin.login')->with('info', 'Verification email resent.');
     }
 
     /**

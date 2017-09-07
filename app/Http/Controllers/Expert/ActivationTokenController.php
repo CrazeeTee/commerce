@@ -19,7 +19,7 @@ class ActivationTokenController extends Controller
 
         $token->delete();
 
-        return redirect('expert/home')->with('success', 'Email verified and activated. Thank you');
+        return redirect()->route('expert.index')->with('success', 'Email verified and activated. Thank you');
     }
 
     public function resend(Request $request)
@@ -27,12 +27,12 @@ class ActivationTokenController extends Controller
         $expert = Expert::byEmail($request->email);
 
         if ($expert->active):
-            return redirect('/expert')->with('info', 'Already verified');
+            return redirect()->route('expert.login')->with('info', 'Already verified');
         endif;
 
         event(new ExpertRequestActivationEmail($expert));
 
-        return redirect('/expert')->with('info', 'Verification email resent.');
+        return redirect()->route('expert.login')->with('info', 'Verification email resent.');
     }
 
     /**
