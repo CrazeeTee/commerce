@@ -31,6 +31,7 @@ class CreateShopsTable extends Migration
             $table->string('county')->nullable()->index();
             $table->string('country')->nullable()->index();
             $table->string('avatar')->nullable()->index();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
