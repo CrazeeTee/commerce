@@ -30,6 +30,7 @@ class CreateShopsTable extends Migration
             $table->string('town')->nullable()->index();
             $table->string('county')->nullable()->index();
             $table->string('country')->nullable()->index();
+            $table->string('avatar')->nullable()->index();
             $table->timestamps();
         });
     }

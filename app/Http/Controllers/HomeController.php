@@ -16,7 +16,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +26,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application home.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
