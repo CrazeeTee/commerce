@@ -68,6 +68,14 @@ class Shop extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    /**
      * @return mixed
      */
     public function hasToken()
@@ -81,6 +89,14 @@ class Shop extends Authenticatable
     public function createToken()
     {
         return $this->activationToken()->create([ 'token' => str_random(128) ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function deleteToken()
+    {
+        return $this->activationToken()->delete();
     }
 
     /**

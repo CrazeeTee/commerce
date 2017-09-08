@@ -1,11 +1,11 @@
-@extends('layouts.app-expert')
+@extends('layouts.app-admin')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ Auth::user()->getFullName() }}'s Dashboard</div>
+                    <div class="panel-heading">{{ Auth::user()->getFullName() }}'s Upload</div>
 
                     <div class="panel-body">
                         @if (session('status'))
@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        You are Home!
+                        Your Uploads!
                     </div>
                 </div>
             </div>

@@ -82,7 +82,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:experts',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -97,7 +97,7 @@ class RegisterController extends Controller
     {
         return Expert::create([
             'unique' => str_random(10),
-            'role' => 'shop',
+            'role' => 'expert',
             'first_name' => ucwords($data['first_name']),
             'email' => strtolower($data['email']),
             'password' => bcrypt($data['password']),

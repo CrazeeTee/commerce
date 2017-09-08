@@ -48,7 +48,7 @@ class ExpertController extends Controller
      */
     public function edit(Expert $expert)
     {
-        return view('expert.show', compact('expert'));
+        return view('expert.edit', compact('expert'));
     }
 
     /**

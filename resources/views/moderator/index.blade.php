@@ -1,4 +1,4 @@
-@extends('layouts.app-expert')
+@extends('layouts.app-moderator')
 
 @section('content')
     <div class="container">

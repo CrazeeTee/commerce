@@ -46,7 +46,7 @@ class ModeratorController extends Controller
      */
     public function edit(Admin $admin)
     {
-        return view('moderator.show', compact('admin'));
+        return view('moderator.edit', compact('admin'));
     }
 
     /**

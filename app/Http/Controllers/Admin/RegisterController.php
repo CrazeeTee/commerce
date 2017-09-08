@@ -80,7 +80,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:admins',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -95,6 +95,7 @@ class RegisterController extends Controller
     {
         return Admin::create([
             'unique' => str_random(10),
+            'role' => 'expert',
             'first_name' => ucwords($data['first_name']),
             'email' => strtolower($data['email']),
             'password' => bcrypt($data['password']),

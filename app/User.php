@@ -72,6 +72,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return mixed
+     */
+    public function deleteToken()
+    {
+        return $this->activationToken()->delete();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function admin()

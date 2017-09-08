@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -52,6 +52,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('user.show', ['user'=>Auth::user()->unique]) }}">Profile</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
