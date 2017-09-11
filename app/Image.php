@@ -12,7 +12,7 @@ class Image extends Model
      * @var array
      */
     protected $fillable = [
-        'excerpt', 'file_name', 'file_size', 'description', 'published',
+        'excerpt', 'unique', 'name', 'size', 'description', 'published',
     ];
 
     /**
@@ -22,6 +22,15 @@ class Image extends Model
     public static function byExcerpt($excerpt)
     {
         return static::where('excerpt', $excerpt)->firstOrFail();
+    }
+    
+    /**
+     * @param $unique
+     * @return \Illuminate\Database\Eloquent\Model|static
+     */
+    public static function byUnique($unique)
+    {
+        return static::where('unique', $unique)->firstOrFail();
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -46,6 +47,15 @@ class User extends Authenticatable
     {
         return static::where('email', $email)->firstOrFail();
     }
+    
+    /**
+     * @param $unique
+     * @return \Illuminate\Database\Eloquent\Model|static
+     */
+    public static function byUnique($unique)
+    {
+        return static::where('unique', $unique)->firstOrFail();
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -68,7 +78,7 @@ class User extends Authenticatable
      */
     public function createToken()
     {
-        return $this->activationToken()->create([ 'token' => str_random(128) ]);
+        return $this->activationToken()->create([ 'token' => Str::random(128) ]);
     }
 
     /**
@@ -188,6 +198,6 @@ class User extends Authenticatable
      */
     public function getFullName()
     {
-        return ucwords("{$this -> first_name} {$this -> last_name}");
+        return ucwords("{$this->first_name} {$this->last_name}");
     }
 }

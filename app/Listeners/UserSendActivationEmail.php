@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\UserRequestActivationEmail;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\UserSendActivationToken;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Mail;
+use App\Events\UserRequestActivationEmail;
 
 class UserSendActivationEmail
 {

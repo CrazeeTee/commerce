@@ -11,11 +11,8 @@
 |
 */
 
-
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@home')->name('home');
-
-Auth::routes();
 
 /** Auth User */
 Auth::routes();
@@ -102,4 +99,3 @@ Route::get('/admin/{admin}/edit', 'AdminController@edit')->name('admin.edit');
 Route::post('/admin/{admin}/edit', 'AdminController@update');
 Route::get('/admin/{admin}/upload', 'AdminController@getUploadForm')->name('admin.upload');
 Route::post('/admin/{admin}/upload', 'AdminController@upload');
-

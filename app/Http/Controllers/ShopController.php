@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ShopUpdateRequest;
-use App\Http\Requests\ShopUploadRequest;
 use App\Shop;
 use Illuminate\Http\Request;
+use App\Http\Requests\ShopUpdateRequest;
+use App\Http\Requests\ShopUploadRequest;
 
 class ShopController extends Controller
 {

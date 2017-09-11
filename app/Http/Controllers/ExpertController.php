@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Expert;
+use Illuminate\Http\Request;
 use App\Http\Requests\ExpertUpdateRequest;
 use App\Http\Requests\ExpertUploadRequest;
-use Illuminate\Http\Request;
 
 class ExpertController extends Controller
 {

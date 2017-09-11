@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use Illuminate\Http\Request;
 use App\Http\Requests\AdminUpdateRequest;
 use App\Http\Requests\AdminUploadRequest;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {

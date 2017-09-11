@@ -41,24 +41,24 @@ return [
             'provider' => 'users',
         ],
 
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
+        
         'shop' => [
             'driver' => 'session',
             'provider' => 'shops',
         ],
-
+        
         'expert' => [
             'driver' => 'session',
             'provider' => 'experts',
         ],
-
+        
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
-        ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
         ],
     ],
 
@@ -84,17 +84,17 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        
         'shops' => [
             'driver' => 'eloquent',
             'model' => App\Shop::class,
         ],
-
+        
         'experts' => [
             'driver' => 'eloquent',
             'model' => App\Expert::class,
         ],
-
+        
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
@@ -127,19 +127,19 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
-
+        
         'shops' => [
             'provider' => 'shops',
             'table' => 'password_resets',
             'expire' => 60,
         ],
-
+        
         'experts' => [
             'provider' => 'experts',
             'table' => 'password_resets',
             'expire' => 60,
         ],
-
+        
         'admins' => [
             'provider' => 'admins',
             'table' => 'password_resets',

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\UserUploadRequest;
 
 class UserController extends Controller
 {

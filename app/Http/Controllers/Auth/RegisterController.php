@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Events\UserRequestActivationEmail;
 use App\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
+use App\Events\UserRequestActivationEmail;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -94,9 +95,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'unique' => str_random(10),
-            'first_name' => ucwords($data['first_name']),
-            'email' => strtolower($data['email']),
+            'unique' => Str::random(10),
+            'first_name' => Str::words($data['first_name']),
+            'email' => Str::lower($data['email']),
             'password' => bcrypt($data['password']),
         ]);
     }

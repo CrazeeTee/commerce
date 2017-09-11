@@ -1,5 +1,0 @@
-
-{	php:S1448"aClass "Admin" has 22 methods, which is greater than 20 authorized. Split it into smaller classes.(ýã¼‘8ãñÆ„æ+
-Y	php:S1192"FDefine a constant instead of duplicating this literal "email" 3 times.(ùÑ‚Ñ
-I	php:S1603"6Replace this function name "admin" with "__construct".(È¯Òþ
-\	php:S1192"IDefine a constant instead of duplicating this literal "password" 3 times.(ùÑ‚Ñ

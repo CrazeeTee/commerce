@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
+use App\Http\Requests\AdminUpdateRequest;
+use App\Http\Requests\AdminUploadRequest;
 
 class ModeratorController extends Controller
 {
@@ -52,11 +54,11 @@ class ModeratorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
+     * @param AdminUpdateRequest|Request $request
+     * @param  \App\Admin $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(AdminUpdateRequest $request, Admin $admin)
     {
         //
     }
@@ -75,11 +77,11 @@ class ModeratorController extends Controller
     /**
      * Upload the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
+     * @param AdminUploadRequest|Request $request
+     * @param  \App\Admin $admin
      * @return \Illuminate\Http\Response
      */
-    public function upload(Request $request, Admin $admin)
+    public function upload(AdminUploadRequest $request, Admin $admin)
     {
         //
     }
