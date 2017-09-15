@@ -42,8 +42,8 @@ Route::post('/shop/password/email', 'Shop\ForgotPasswordController@sendResetLink
 Route::get('/shop/password/reset/{token}', 'Shop\ResetPasswordController@showResetForm')->name('shop.password.reset');
 Route::post('/shop/password/reset', 'Shop\ResetPasswordController@reset');
 
-Route::get('/shop/activate/email/{token}', 'Shop\ActivationTokenController@activate')->name('activate.shop.email');
-Route::get('/shop/activate/resend', 'Shop\ActivationTokenController@resend')->name('resend.shop.email');
+Route::get('/shop/activate/email/{token}', 'Shop\ActivationTokenController@activate')->name('shop.activate.email');
+Route::get('/shop/activate/resend', 'Shop\ActivationTokenController@resend')->name('shop.resend.email');
 
 Route::get('/shop/home', 'ShopController@index')->name('shop.index');
 Route::get('/shop/{shop}', 'ShopController@show')->name('shop.show');
@@ -64,8 +64,8 @@ Route::post('/expert/password/email', 'Expert\ForgotPasswordController@sendReset
 Route::get('/expert/password/reset/{token}', 'Expert\ResetPasswordController@showResetForm')->name('expert.password.reset');
 Route::post('/expert/password/reset', 'Expert\ResetPasswordController@reset');
 
-Route::get('/expert/activate/email/{token}', 'Expert\ActivationTokenController@activate')->name('activate.expert.email');
-Route::get('/expert/activate/resend', 'Expert\ActivationTokenController@resend')->name('resend.expert.email');
+Route::get('/expert/activate/email/{token}', 'Expert\ActivationTokenController@activate')->name('expert.activate.email');
+Route::get('/expert/activate/resend', 'Expert\ActivationTokenController@resend')->name('expert.resend.email');
 
 Route::get('/expert/home', 'ExpertController@index')->name('expert.index');
 Route::get('/expert/{expert}', 'ExpertController@show')->name('expert.show');
@@ -86,8 +86,8 @@ Route::post('/admin/password/email', 'Admin\ForgotPasswordController@sendResetLi
 Route::get('/admin/password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 Route::post('/admin/password/reset', 'Admin\ResetPasswordController@reset');
 
-Route::get('/admin/activate/email/{token}', 'Admin\ActivationTokenController@activate')->name('activate.admin.email');
-Route::get('/admin/activate/resend', 'Admin\ActivationTokenController@resend')->name('resend.admin.email');
+Route::get('/admin/activate/email/{token}', 'Admin\ActivationTokenController@activate')->name('admin.activate.email');
+Route::get('/admin/activate/resend', 'Admin\ActivationTokenController@resend')->name('admin.resend.email');
 
 Route::get('/moderator/home', 'ModeratorController@index')->name('moderator.index');
 Route::get('/moderator/{admin}', 'ModeratorController@show')->name('moderator.show');
