@@ -146,4 +146,12 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Expert::class);
     }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return (bool) $this->role = 'admin';
+    }
 }
