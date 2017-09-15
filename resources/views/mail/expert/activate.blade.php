@@ -75,7 +75,7 @@
         <h4>Email Activation for <strong>{{ $token->expert->email }}</strong></h4>
 
         <p>Please activate your account using the following link.</p>
-        <p><a href="{{ route('activate.expert.email', $token) }}">Click here to verify</a></p>
+        <p><a href="{{ route('expert.activate.email', $token) }}">Click here to verify</a></p>
 
         <div class="links">
             <a href="#">Top</a>
@@ -89,7 +89,7 @@
         <p>If you did not request this email verification, no further action is required.</p>
 
         <hr>
-        <p>If you having trouble click on this direct link <a href="{{ route('expert.activate.email', $token) }}">{{ route('activate.expert.email', $token) }}</a></p>
+        <p>If you having trouble click on this direct link <a href="{{ route('expert.activate.email', $token) }}">{{ route('expert.activate.email', $token) }}</a></p>
 
     </div>
 </div>
