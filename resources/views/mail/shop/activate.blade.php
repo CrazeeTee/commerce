@@ -89,7 +89,7 @@
         <p>If you did not request this email verification, no further action is required.</p>
 
         <hr>
-        <p>If you having trouble click on this direct link <a href="{{ route('activate.shop.email', $token) }}">{{ route('activate.shop.email', $token) }}</a></p>
+        <p>If you having trouble click on this direct link <a href="{{ route('shop.activate.email', $token) }}">{{ route('activate.shop.email', $token) }}</a></p>
 
     </div>
 </div>
