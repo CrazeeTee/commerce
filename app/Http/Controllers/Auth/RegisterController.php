@@ -96,8 +96,8 @@ class RegisterController extends Controller
     {
         return User::create([
             'unique' => Str::random(10),
-            'first_name' => Str::words($data['first_name']),
-            'email' => Str::lower($data['email']),
+            'first_name' => $data['first_name'],
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -117,7 +117,7 @@ class RegisterController extends Controller
 
         $this->guard()->logout();
 
-        return redirect()->route('login')->with('info', 'Please now verify email to activate your account');
+        return redirect()->route('login')->with('info', 'Please now verify email to activate your account.');
     }
 
     /**

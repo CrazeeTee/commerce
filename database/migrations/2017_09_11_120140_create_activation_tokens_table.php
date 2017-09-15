@@ -15,10 +15,10 @@ class CreateActivationTokensTable extends Migration
     {
         Schema::create('activation_tokens', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->nullable()->unsigned()->index();
-            $table->integer('shop_id')->nullable()->unsigned()->index();
-            $table->integer('expert_id')->nullable()->unsigned()->index();
-            $table->integer('admin_id')->nullable()->unsigned()->index();
+            $table->integer('user_id')->nullable()->unsigned();
+            $table->integer('shop_id')->nullable()->unsigned();
+            $table->integer('expert_id')->nullable()->unsigned();
+            $table->integer('admin_id')->nullable()->unsigned();
             $table->string('token')->nullable()->index();
             $table->timestamps();
         });

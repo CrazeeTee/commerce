@@ -19,7 +19,7 @@ class ActivationTokenController extends Controller
 
         $token->delete();
 
-        return redirect()->route('shop.index')->with('success', 'Email verified and activated. Thank you');
+        return redirect()->route('shop.index')->with('success', 'Email verified. Thank you.');
     }
 
     public function resend(Request $request)

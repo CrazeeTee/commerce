@@ -13,13 +13,13 @@ class ActivationTokenController extends Controller
 {
     public function activate(ActivationToken $token)
     {
-        $token->user()->update(['active' => true,]);
+        $token->user()->update([ 'active' => true ]);
 
         $this->guard()->login($token->user);
 
         $token->delete();
 
-        return redirect()->route('user.index')->with('success', 'Email verified and activated. Thank you');
+        return redirect()->route('user.index')->with('success', 'Email verified. Thank you');
     }
 
     public function resend(Request $request)
@@ -27,7 +27,7 @@ class ActivationTokenController extends Controller
         $user = User::byEmail($request->email);
 
         if ($user->active):
-            return redirect()->route('login')->with('info', 'Already verified');
+            return redirect()->route('login')->with('info', 'Already verified.');
         endif;
 
         event(new UserRequestActivationEmail($user));

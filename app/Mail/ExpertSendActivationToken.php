@@ -31,6 +31,6 @@ class ExpertSendActivationToken extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.expert.activate');
+        return $this->view('mail.expert.activate')->subject('Verify Expert Email.');
     }
 }

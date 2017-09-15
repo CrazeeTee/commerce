@@ -31,6 +31,6 @@ class ShopSendActivationToken extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.shop.activate');
+        return $this->view('mail.shop.activate')->subject('Verify Shop Email.');
     }
 }

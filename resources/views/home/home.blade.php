@@ -8,13 +8,7 @@
                     <div class="panel-heading">{{ Auth::user()->getFullName() }}'s Home</div>
 
                     <div class="panel-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        You are logged in as User!
+                        You are logged in!
                     </div>
                 </div>
             </div>

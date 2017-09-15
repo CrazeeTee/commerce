@@ -96,8 +96,8 @@ class RegisterController extends Controller
         return Shop::create([
             'unique' => str_random(10),
             'role' => 'shop',
-            'first_name' => ucwords($data['first_name']),
-            'email' => strtolower($data['email']),
+            'first_name' => $data['first_name'],
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }

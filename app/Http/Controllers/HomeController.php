@@ -16,7 +16,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,12 +26,42 @@ class HomeController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
     public function home()
     {
         return view('home.home');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function shop()
+    {
+        return view('home.shop');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function expert()
+    {
+        return view('home.expert');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin()
+    {
+        return view('home.admin');
     }
 }

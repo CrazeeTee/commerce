@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Expert;
 
-use App\Admin;
-use App\Events\AdminRequestActivationEmail;
-use App\Events\ExpertRequestActivationEmail;
 use App\Expert;
-use App\Http\Controllers\Controller;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
+use App\Events\ExpertRequestActivationEmail;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -98,8 +96,8 @@ class RegisterController extends Controller
         return Expert::create([
             'unique' => str_random(10),
             'role' => 'expert',
-            'first_name' => ucwords($data['first_name']),
-            'email' => strtolower($data['email']),
+            'first_name' => $data['first_name'],
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }

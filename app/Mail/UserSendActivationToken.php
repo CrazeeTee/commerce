@@ -31,6 +31,6 @@ class UserSendActivationToken extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.auth.activate');
+        return $this->view('mail.user.activate')->subject('Verify User Email.');
     }
 }

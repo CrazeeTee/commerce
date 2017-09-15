@@ -36,38 +36,49 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Pages <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('index') }}">Home</a></li>
+                            <li><a href="{{ route('shop') }}">Shop</a></li>
+                            <li><a href="{{ route('expert') }}">Expert</a></li>
+                            <li><a href="{{ route('admin') }}">Admin (Moderator)</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->getFirstName() }} <span class="caret"></span>
-                            </a>
+                    @guest
+                        <li><a href="{{ route('moderator.login') }}">Login</a></li>
+                        <li><a href="{{ route('moderator.register') }}">Register</a></li>
+                        @else
+                            <li><a href="{{ route('moderator.index') }}">Home</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->getFirstName() }} <span class="caret"></span>
+                                </a>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('moderator.show', ['admin'=>Auth::user()->unique]) }}">Profile</a></li>
-                                <li><a href="{{ route('moderator.upload', ['admin'=>Auth::user()->unique]) }}admin">Upload</a></li>
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('moderator.show', ['admin' => Auth::user()->unique]) }}">Profile</a></li>
+                                    <li><a href="{{ route('moderator.edit', ['admin' => Auth::user()->unique]) }}">Edit</a></li>
+                                    <li>
+                                        <a href="{{ route('moderator.logout') }}"
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
+                                            Logout
+                                        </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
+                                        <form id="logout-form" action="{{ route('moderator.logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endguest
                 </ul>
             </div>
         </div>

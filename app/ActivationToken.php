@@ -16,8 +16,6 @@ class ActivationToken extends Model
     ];
 
     /**
-     * Set Route model binder
-     *
      * @return string
      */
     public function getRouteKeyName()

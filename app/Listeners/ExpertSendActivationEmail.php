@@ -4,13 +4,15 @@ namespace App\Listeners;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ExpertSendActivationToken;
+use App\Events\ExpertRequestActivationEmail;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ExpertSendActivationEmail
 {
     /**
      * Create the event listener.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -20,10 +22,10 @@ class ExpertSendActivationEmail
     /**
      * Handle the event.
      *
-     * @param $event
+     * @param  ExpertRequestActivationEmail  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(ExpertRequestActivationEmail $event)
     {
         Mail::to($event->expert)->send(new ExpertSendActivationToken($event->expert->activationToken));
     }

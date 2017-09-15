@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -36,23 +36,35 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Pages <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('index') }}">Home</a></li>
+                                <li><a href="{{ route('shop') }}">Shop</a></li>
+                                <li><a href="{{ route('expert') }}">Expert</a></li>
+                                <li><a href="{{ route('admin') }}">Admin (Moderator)</a></li>
+                            </ul>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::guest())
+                        @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li><a href="{{ route('user.index') }}">Home</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->getFirstName() }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ route('user.show', ['user'=>Auth::user()->unique]) }}">Profile</a></li>
+                                    <li><a href="{{ route('user.show', ['user' => Auth::user()->unique]) }}">Profile</a></li>
+                                    <li><a href="{{ route('user.edit', ['user' => Auth::user()->unique]) }}">Edit</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -66,7 +78,7 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endif
+                        @endguest
                     </ul>
                 </div>
             </div>

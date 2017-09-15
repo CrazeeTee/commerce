@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\AdminResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
@@ -17,7 +18,7 @@ class Admin extends Authenticatable
      */
     protected $fillable = [
         'unique', 'role', 'active', 'first_name', 'last_name', 'email', 'password', 'postal', 'address1', 'address2', 'zip',
-        'town', 'county', 'country', 'additional', 'avatar'
+        'town', 'county', 'country', 'avatar'
     ];
 
     /**
@@ -30,16 +31,6 @@ class Admin extends Authenticatable
     ];
 
     /**
-     * Set the Route model binder
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'unique';
-    }
-    
-    /**
      * Send the password reset notification.
      *
      * @param  string  $token
@@ -48,6 +39,14 @@ class Admin extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new AdminResetPasswordNotification($token));
+    }
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'unique';
     }
 
     /**
@@ -60,163 +59,12 @@ class Admin extends Authenticatable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @param $unique
+     * @return \Illuminate\Database\Eloquent\Model|static
      */
-    public function activationToken()
+    public static function byUnique($unique)
     {
-        return $this->hasOne(ActivationToken::class);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function hasToken()
-    {
-        return $this->activationToken;
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function createToken()
-    {
-        return $this->activationToken()->create([ 'token' => Str::random(128) ]);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function deleteToken()
-    {
-        return $this->activationToken()->delete();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function shops()
-    {
-        return $this->hasMany(Shop::class);
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function experts()
-    {
-        return $this->hasMany(Expert::class);
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function images()
-    {
-        return $this->hasMany(Image::class);
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function articles()
-    {
-        return $this->hasMany(Article::class);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setEmailAttribute($value)
-    {
-        $this->attributes['email'] = strtolower($value);
-    }
-
-    /**
-     * @param $password
-     */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setFirstNameAttribute($value)
-    {
-        $this->attributes['first_name'] = ucfirst($value);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setLastNameAttribute($value)
-    {
-        $this->attributes['last_name'] = ucfirst($value);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setRoleAttribute($value)
-    {
-        $this->attributes['role'] = strtolower($value);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setPhoneAttribute($value)
-    {
-        $this->attributes['phone'] = strtolower($value);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setTownAttribute($value)
-    {
-        $this->attributes['town'] = ucfirst($value);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setCountyAttribute($value)
-    {
-        $this->attributes['county'] = ucfirst($value);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setCountryAttribute($value)
-    {
-        $this->attributes['country'] = ucfirst($value);
-    }
-
-    /**
-     * @param $value
-     */
-    public function setAdditionalAttribute($value)
-    {
-        $this->attributes['additional'] = strtolower($value);
+        return static::where('unique', $unique)->firstOrFail();
     }
 
     /**
@@ -241,5 +89,61 @@ class Admin extends Authenticatable
     public function getFullName()
     {
         return ucwords("{$this->first_name} {$this->last_name}");
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function activationToken()
+    {
+        return $this->hasOne(ActivationToken::class);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasToken()
+    {
+        return (bool) $this->activationToken;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function createToken()
+    {
+        return $this->activationToken()->create(['token' => Str::random(128)]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function deleteToken()
+    {
+        return $this->activationToken()->delete();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function shop()
+    {
+        return $this->hasMany(Shop::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function expert()
+    {
+        return $this->hasMany(Expert::class);
     }
 }

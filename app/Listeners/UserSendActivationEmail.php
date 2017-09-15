@@ -13,7 +13,6 @@ class UserSendActivationEmail
     /**
      * Create the event listener.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -23,10 +22,10 @@ class UserSendActivationEmail
     /**
      * Handle the event.
      *
-     * @param $event
+     * @param UserRequestActivationEmail $event
      * @return void
      */
-    public function handle($event)
+    public function handle(UserRequestActivationEmail $event)
     {
         Mail::to($event->user)->send(new UserSendActivationToken($event->user->activationToken));
     }

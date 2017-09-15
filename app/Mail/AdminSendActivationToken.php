@@ -31,6 +31,6 @@ class AdminSendActivationToken extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.admin.activate');
+        return $this->view('mail.admin.activate')->subject('Verify Admin Email.');
     }
 }

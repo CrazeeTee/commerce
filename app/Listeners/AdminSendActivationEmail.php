@@ -4,6 +4,9 @@ namespace App\Listeners;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminSendActivationToken;
+use App\Events\AdminRequestActivationEmail;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class AdminSendActivationEmail
 {
@@ -20,10 +23,10 @@ class AdminSendActivationEmail
     /**
      * Handle the event.
      *
-     * @param $event
+     * @param  AdminRequestActivationEmail  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(AdminRequestActivationEmail $event)
     {
         Mail::to($event->admin)->send(new AdminSendActivationToken($event->admin->activationToken));
     }
