@@ -65,6 +65,9 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('admin.show', ['admin' => Auth::user()->unique]) }}">Profile</a></li>
                             <li><a href="{{ route('admin.edit', ['admin' => Auth::user()->unique]) }}">Edit</a></li>
+                            <li><a href="{{ route('shops') }}">Shops</a></li>
+                            <li><a href="{{ route('experts') }}">Experts</a></li>
+                            <li><a href="{{ route('moderators') }}">Moderators</a></li>
                             <li>
                                 <a href="{{ route('admin.logout') }}"
                                    onclick="event.preventDefault();

@@ -11,12 +11,16 @@
 |
 */
 
+Route::get('/admin', 'HomeController@admin')->name('admin');
+
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/shop', 'HomeController@shop')->name('shop');
+Route::get('/shops', 'HomeController@shops')->name('shops');
 Route::get('/expert', 'HomeController@expert')->name('expert');
-Route::get('/admin', 'HomeController@admin')->name('admin');
+Route::get('/experts', 'HomeController@experts')->name('experts');
 Route::get('/moderator', 'HomeController@moderator')->name('moderator');
+Route::get('/moderators', 'HomeController@moderators')->name('moderators');
 
 
 /** User */
@@ -29,6 +33,7 @@ Route::get('/user/home', 'UserController@index')->name('user.index');
 Route::get('/user/{user}', 'UserController@show')->name('user.show');
 Route::get('/user/{user}/edit', 'UserController@edit')->name('user.edit');
 Route::post('/user/{user}/edit', 'UserController@update');
+Route::get('/user/{user}/shops', 'UserController@shops')->name('user.shops');
 
 
 /** Shop */

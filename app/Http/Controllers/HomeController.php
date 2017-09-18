@@ -50,6 +50,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function shops()
+    {
+        return view('home.shops');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function expert()
     {
         return view('home.expert');
@@ -60,8 +70,38 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function experts()
+    {
+        return view('home.experts');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin()
     {
         return view('home.admin');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function moderator()
+    {
+        return view('home.moderator');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function moderators()
+    {
+        return view('home.moderators');
     }
 }

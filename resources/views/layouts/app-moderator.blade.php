@@ -53,8 +53,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @guest
-                        <li><a href="{{ route('moderator.login') }}">Login</a></li>
-                        <li><a href="{{ route('moderator.register') }}">Register</a></li>
+                        <li><a href="{{ route('admin.login') }}">Login</a></li>
+                        <li><a href="{{ route('admin.register') }}">Register</a></li>
                         @else
                             <li><a href="{{ route('moderator.index') }}">Home</a></li>
                             <li class="dropdown">
@@ -65,14 +65,17 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ route('moderator.show', ['admin' => Auth::user()->unique]) }}">Profile</a></li>
                                     <li><a href="{{ route('moderator.edit', ['admin' => Auth::user()->unique]) }}">Edit</a></li>
+                                    <li><a href="{{ route('shops') }}">Shops</a></li>
+                                    <li><a href="{{ route('experts') }}">Experts</a></li>
+                                    <li><a href="{{ route('moderators') }}">Moderators</a></li>
                                     <li>
-                                        <a href="{{ route('moderator.logout') }}"
+                                        <a href="{{ route('admin.logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('moderator.logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
