@@ -8,7 +8,7 @@
                     <div class="panel-heading">Moderators</div>
 
                     <div class="panel-body">
-                        Here are Moderators! <a class="btn btn-info btn-sm" href="{{ route('admin.register') }}">Become a Moderator</a>
+                        <p class="text-right"><a href="{{ route('admin.register') }}" class="btn btn-info btn-sm">Become a Moderator</a></p>
                     </div>
                 </div>
             </div>

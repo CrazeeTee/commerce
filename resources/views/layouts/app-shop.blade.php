@@ -64,7 +64,6 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ route('shop.show', ['shop' => Auth::user()->unique]) }}">Profile</a></li>
-                                    <li><a href="{{ route('shop.edit', ['shop' => Auth::user()->unique]) }}">Edit</a></li>
                                     <li><a href="{{ route('shops') }}">Shops</a></li>
                                     <li><a href="{{ route('experts') }}">Experts</a></li>
                                     <li><a href="{{ route('moderators') }}">Moderators</a></li>

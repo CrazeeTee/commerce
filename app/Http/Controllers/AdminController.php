@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use Intervention;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdminUpdateRequest;
 use App\Http\Requests\AdminUploadRequest;
+use App\Http\Requests\AdminUploadAvatarRequest;
 
 class AdminController extends Controller
 {
@@ -60,7 +62,51 @@ class AdminController extends Controller
      */
     public function update(AdminUpdateRequest $request, Admin $admin)
     {
-        //
+        $input = $request->all();
+
+        $admin->update($input);
+
+        return redirect()->route('admin.show', ['admin' => $admin->unique])->with('success', 'Profile updated.');
+    }
+
+    /**
+     * Show the form for uploading profile for the specified resource.
+     *
+     * @param  \App\Admin  $admin
+     * @return \Illuminate\Http\Response
+     */
+    public function getUploadAvatar(Admin $admin)
+    {
+        return view('admin.avatar', compact('admin'));
+    }
+
+    /**
+     * Upload the specified resource in storage.
+     *
+     * @param AdminUploadAvatarRequest|Request $request
+     * @param  \App\Admin $admin
+     * @return \Illuminate\Http\Response
+     */
+    public function uploadAvatar(AdminUploadAvatarRequest $request, Admin $admin)
+    {
+        $avatar=$request->file('avatar');
+        $ext='.png';
+
+        $avatar_name = $admin->id.$admin->unique.$ext;
+        $avatar_path = 'storage/photos/avatars/';
+
+        if (!file_exists(public_path($avatar_path))):
+            mkdir(public_path($avatar_path), 0777, true);
+        endif;
+
+        $save_file = public_path($avatar_path.$avatar_name);
+
+        Intervention::make($avatar)->resize(400, 400)->save($save_file);
+
+        $admin->avatar = $avatar_name;
+        $admin->save();
+
+        return redirect()->route('admin.profile', ['admin' => $admin->unique])->with('success', 'Profile pic uploaded.');
     }
 
     /**

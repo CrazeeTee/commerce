@@ -13,7 +13,7 @@ class ShopUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class ShopUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'town' => 'required|string',
+            'county' => 'required|string',
+            'country' => 'required|string',
+            'address1' => 'required',
+            'zip' => 'required',
         ];
     }
 }

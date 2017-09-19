@@ -33,6 +33,8 @@ Route::get('/user/home', 'UserController@index')->name('user.index');
 Route::get('/user/{user}', 'UserController@show')->name('user.show');
 Route::get('/user/{user}/edit', 'UserController@edit')->name('user.edit');
 Route::post('/user/{user}/edit', 'UserController@update');
+Route::get('/user/{user}/avatar', 'UserController@getUploadAvatar')->name('user.avatar');
+Route::post('/user/{user}/avatar', 'UserController@uploadAvatar');
 Route::get('/user/{user}/shops', 'UserController@shops')->name('user.shops');
 
 
@@ -56,6 +58,8 @@ Route::get('/shop/{shop}/edit', 'ShopController@edit')->name('shop.edit');
 Route::post('/shop/{shop}/edit', 'ShopController@update');
 Route::get('/shop/{shop}/upload', 'ShopController@getUploadForm')->name('shop.upload');
 Route::post('/shop/{shop}/upload', 'ShopController@upload');
+Route::get('/shop/{shop}/avatar', 'ShopController@getUploadAvatar')->name('shop.avatar');
+Route::post('/shop/{shop}/avatar', 'ShopController@uploadAvatar');
 
 
 /** Expert */
@@ -78,6 +82,8 @@ Route::get('/expert/{expert}/edit', 'ExpertController@edit')->name('expert.edit'
 Route::post('/expert/{expert}/edit', 'ExpertController@update');
 Route::get('/expert/{expert}/upload', 'ExpertController@getUploadForm')->name('expert.upload');
 Route::post('/expert/{expert}/upload', 'ExpertController@upload');
+Route::get('/expert/{expert}/avatar', 'ExpertController@getUploadAvatar')->name('expert.avatar');
+Route::post('/expert/{expert}/avatar', 'ExpertController@uploadAvatar');
 
 
 /** Admin */
@@ -100,6 +106,8 @@ Route::get('/moderator/{admin}/edit', 'ModeratorController@edit')->name('moderat
 Route::post('/moderator/{admin}/edit', 'ModeratorController@update');
 Route::get('/moderator/{admin}/upload', 'ModeratorController@getUploadForm')->name('moderator.upload');
 Route::post('/moderator/{admin}/upload', 'ModeratorController@upload');
+Route::get('/moderator/{admin}/avatar', 'ModeratorController@getUploadAvatar')->name('moderator.avatar');
+Route::post('/moderator/{admin}/avatar', 'ModeratorController@uploadAvatar');
 
 Route::get('/admin/home', 'AdminController@index')->name('admin.index');
 Route::get('/admin/{admin}', 'AdminController@show')->name('admin.show');
@@ -107,3 +115,5 @@ Route::get('/admin/{admin}/edit', 'AdminController@edit')->name('admin.edit');
 Route::post('/admin/{admin}/edit', 'AdminController@update');
 Route::get('/admin/{admin}/upload', 'AdminController@getUploadForm')->name('admin.upload');
 Route::post('/admin/{admin}/upload', 'AdminController@upload');
+Route::get('/admin/{admin}/avatar', 'AdminController@getUploadAvatar')->name('admin.avatar');
+Route::post('/admin/{admin}/avatar', 'AdminController@uploadAvatar');

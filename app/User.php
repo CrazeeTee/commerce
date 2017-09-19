@@ -56,6 +56,46 @@ class User extends Authenticatable
     }
 
     /**
+     * @param $name
+     */
+    public function setFirstNameAttribute($name)
+    {
+        $this -> attributes['first_name'] = ucfirst($name);
+    }
+
+    /**
+     * @param $name
+     */
+    public function setLastNameAttribute($name)
+    {
+        $this -> attributes['last_name'] = ucfirst($name);
+    }
+
+    /**
+     * @param $town
+     */
+    public function setTownAttribute($town)
+    {
+        $this -> attributes['town'] = ucfirst($town);
+    }
+
+    /**
+     * @param $county
+     */
+    public function setCountyAttribute($county)
+    {
+        $this -> attributes['county'] = ucfirst($county);
+    }
+
+    /**
+     * @param $country
+     */
+    public function setCountryAttribute($country)
+    {
+        $this -> attributes['country'] = ucfirst($country);
+    }
+
+    /**
      * @return string
      */
     public function getFirstName()
@@ -77,6 +117,34 @@ class User extends Authenticatable
     public function getFullName()
     {
         return ucwords("{$this->first_name} {$this->last_name}");
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getLocation()
+    {
+        if ($this->town && $this->county && $this->country):
+            return "From {$this->town} in {$this->county}, {$this->country}";
+        elseif ($this->town && $this->country):
+            return ucwords("{$this->town}, {$this->country}");
+        endif;
+
+        return null;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAddress()
+    {
+        if ($this->zip && $this->address1 && $this->address2):
+            return "{$this->zip} - {$this->address1} or {$this->address2}";
+        elseif ($this->address1):
+            return ucwords("{$this->zip} - {$this->address1}");
+        endif;
+
+        return null;
     }
 
     /**
