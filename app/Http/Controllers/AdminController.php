@@ -106,7 +106,7 @@ class AdminController extends Controller
         $admin->avatar = $avatar_name;
         $admin->save();
 
-        return redirect()->route('admin.profile', ['admin' => $admin->unique])->with('success', 'Profile pic uploaded.');
+        return redirect()->route('admin.show', ['admin' => $admin->unique])->with('success', 'Profile pic uploaded.');
     }
 
     /**

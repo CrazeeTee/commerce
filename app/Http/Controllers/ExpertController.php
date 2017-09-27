@@ -106,7 +106,7 @@ class ExpertController extends Controller
         $expert->avatar = $avatar_name;
         $expert->save();
 
-        return redirect()->route('expert.profile', ['expert' => $expert->unique])->with('success', 'Profile pic uploaded.');
+        return redirect()->route('expert.show', ['expert' => $expert->unique])->with('success', 'Profile pic uploaded.');
     }
 
     /**

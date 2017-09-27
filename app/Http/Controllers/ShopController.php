@@ -106,7 +106,7 @@ class ShopController extends Controller
         $shop->avatar = $avatar_name;
         $shop->save();
 
-        return redirect()->route('shop.profile', ['shop' => $shop->unique])->with('success', 'Profile pic uploaded.');
+        return redirect()->route('shop.show', ['shop' => $shop->unique])->with('success', 'Profile pic uploaded.');
     }
 
     /**

@@ -106,7 +106,7 @@ class ModeratorController extends Controller
         $admin->avatar = $avatar_name;
         $admin->save();
 
-        return redirect()->route('moderator.profile', ['admin' => $admin->unique])->with('success', 'Profile pic uploaded.');
+        return redirect()->route('moderator.show', ['admin' => $admin->unique])->with('success', 'Profile pic uploaded.');
     }
 
     /**

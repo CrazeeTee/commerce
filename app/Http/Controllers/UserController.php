@@ -104,7 +104,7 @@ class UserController extends Controller
         $user->avatar = $avatar_name;
         $user->save();
 
-        return redirect()->route('user.profile', ['user' => $user->unique])->with('success', 'Profile pic uploaded.');
+        return redirect()->route('user.show', ['user' => $user->unique])->with('success', 'Profile pic uploaded.');
     }
 
     /**
