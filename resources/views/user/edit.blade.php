@@ -8,7 +8,7 @@
                     <div class="panel-heading">{{ Auth::user()->getFullName() }}'s Profile - <strong>Edit</strong> </div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('user.edit', ['user' => Auth::user()->unique]) }}" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="POST" action="{{ route('user.edit', Auth::user()->unique) }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -129,7 +129,7 @@
                                         Update Profile
                                     </button>
 
-                                    <a href="{{ route('user.avatar', ['user' => Auth::user()->unique]) }}" class="btn btn-primary">Upload Profile pic</a>
+                                    <a href="{{ route('user.avatar', Auth::user()->unique) }}" class="btn btn-primary">Upload Profile pic</a>
                                 </div>
                             </div>
                         </form>

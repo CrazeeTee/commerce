@@ -8,7 +8,7 @@
                     <div class="panel-heading">{{ Auth::user()->getFullName() }}'s Profile pic - <strong>Edit</strong> </div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('admin.avatar', ['admin' => Auth::user()->unique]) }}" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="POST" action="{{ route('admin.avatar', Auth::user()->unique) }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">

@@ -19,6 +19,6 @@ class ShopMiddleware
         if (Auth::guard('shop')) {
             return $next($request);
         }
-        return redirect('/');
+        return redirect()->route('index');
     }
 }

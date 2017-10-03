@@ -150,10 +150,10 @@ class Expert extends Authenticatable
      */
     public function getAddress()
     {
-        if ($this->address1 && $this->address2):
-            return "At {$this->address1} or {$this->address2}";
+        if ($this->zip && $this->address1 && $this->address2):
+            return "{$this->address1} or {$this->address2} - {$this->zip}";
         elseif ($this->address1):
-            return ucwords("{$this->address1}");
+            return ucwords("{$this->address1} - {$this->zip}");
         endif;
 
         return null;

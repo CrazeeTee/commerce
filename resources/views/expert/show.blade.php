@@ -22,7 +22,7 @@
 
                     <div class="panel-footer">
                         @if(Auth::user()->unique === $expert->unique)
-                            <p class="text-right"><a href="{{ route('expert.edit', ['expert' => Auth::user()->unique]) }}" class="btn btn-info">Edit Profile</a></p>
+                            <p class="text-right"><a href="{{ route('expert.edit', Auth::user()->unique) }}" class="btn btn-info">Edit Profile</a></p>
                         @endif
                     </div>
                 </div>

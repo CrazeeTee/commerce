@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('unique')->nullable()->unique()->index();
             $table->string('slug')->nullable()->index();
             $table->string('name')->nullable()->index();
+            $table->string('image')->nullable()->index();
             $table->longText('description')->nullable();
             $table->string('size')->index()->nullable();
             $table->string('color')->index()->nullable();

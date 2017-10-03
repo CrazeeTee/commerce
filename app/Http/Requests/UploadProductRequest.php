@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExpertUpdateRequest extends FormRequest
+class UploadProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,13 @@ class ExpertUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'town' => 'required|string',
-            'county' => 'required|string',
-            'country' => 'required|string',
-            'address1' => 'required',
-            'zip' => 'required',
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'size' => 'required',
+            'color' => 'required',
+            'stock' => 'required',
+            'new_price' => 'required',
+            'image' => 'required'
         ];
     }
 }

@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Expert;
 use Intervention;
 use Illuminate\Http\Request;
-use App\Http\Requests\ExpertUpdateRequest;
-use App\Http\Requests\ExpertUploadRequest;
-use App\Http\Requests\ExpertUploadAvatarRequest;
+use App\Http\Requests\UploadImageRequest;
+use App\Http\Requests\UploadAvatarRequest;
+use App\Http\Requests\UpdateProfileRequest;
 
 class ExpertController extends Controller
 {
@@ -56,17 +56,17 @@ class ExpertController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param ExpertUpdateRequest|Request $request
+     * @param UpdateProfileRequest|Request $request
      * @param  \App\Expert $expert
      * @return \Illuminate\Http\Response
      */
-    public function update(ExpertUpdateRequest $request, Expert $expert)
+    public function update(UpdateProfileRequest $request, Expert $expert)
     {
         $input = $request->all();
 
         $expert->update($input);
 
-        return redirect()->route('expert.show', ['expert' => $expert->unique])->with('success', 'Profile updated.');
+        return redirect()->route('expert.show', $expert->unique)->with('success', 'Profile updated.');
     }
 
     /**
@@ -83,30 +83,30 @@ class ExpertController extends Controller
     /**
      * Upload the specified resource in storage.
      *
-     * @param ExpertUploadAvatarRequest|Request $request
+     * @param UploadAvatarRequest|Request $request
      * @param  \App\Expert $expert
      * @return \Illuminate\Http\Response
      */
-    public function uploadAvatar(ExpertUploadAvatarRequest $request, Expert $expert)
+    public function uploadAvatar(UploadAvatarRequest $request, Expert $expert)
     {
         $avatar=$request->file('avatar');
         $ext='.png';
 
-        $avatar_name = $expert->id.$expert->unique.$ext;
-        $avatar_path = 'storage/photos/avatars/';
+        $avatar_name = $expert->id.uniqid().$ext;
+        $avatar_path = 'app/public/photos/avatars/';
 
-        if (!file_exists(public_path($avatar_path))):
-            mkdir(public_path($avatar_path), 0777, true);
+        if (!file_exists(storage_path($avatar_path))):
+            mkdir(storage_path($avatar_path), 0777, true);
         endif;
 
-        $save_file = public_path($avatar_path.$avatar_name);
+        $save_file = storage_path($avatar_path.$avatar_name);
 
         Intervention::make($avatar)->resize(400, 400)->save($save_file);
 
         $expert->avatar = $avatar_name;
         $expert->save();
 
-        return redirect()->route('expert.show', ['expert' => $expert->unique])->with('success', 'Profile pic uploaded.');
+        return redirect()->route('expert.show', $expert->unique)->with('success', 'Profile pic uploaded.');
     }
 
     /**
@@ -123,11 +123,11 @@ class ExpertController extends Controller
     /**
      * Upload the specified resource in storage.
      *
-     * @param ExpertUploadRequest|Request $request
+     * @param UploadImageRequest|Request $request
      * @param  \App\Expert $expert
      * @return \Illuminate\Http\Response
      */
-    public function upload(ExpertUploadRequest $request, Expert $expert)
+    public function upload(UploadImageRequest $request, Expert $expert)
     {
         //
     }
@@ -140,6 +140,8 @@ class ExpertController extends Controller
      */
     public function destroy(Expert $expert)
     {
-        //
+        $expert->softDelete();
+
+        return redirect()->route('index')->with('warning', 'Deleted. Hope we Helped you Grow.');
     }
 }

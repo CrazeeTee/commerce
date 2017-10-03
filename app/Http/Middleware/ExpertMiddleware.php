@@ -19,6 +19,6 @@ class ExpertMiddleware
         if (Auth::guard('expert')) {
             return $next($request);
         }
-        return redirect('/');
+        return redirect()->route('index');
     }
 }

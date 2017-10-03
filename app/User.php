@@ -139,9 +139,9 @@ class User extends Authenticatable
     public function getAddress()
     {
         if ($this->zip && $this->address1 && $this->address2):
-            return "{$this->zip} - {$this->address1} or {$this->address2}";
+            return "{$this->address1} or {$this->address2} - {$this->zip}";
         elseif ($this->address1):
-            return ucwords("{$this->zip} - {$this->address1}");
+            return ucwords("{$this->address1} - {$this->zip}");
         endif;
 
         return null;

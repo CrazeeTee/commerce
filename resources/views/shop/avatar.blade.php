@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-shop')
 
 @section('content')
     <div class="container">
@@ -8,7 +8,7 @@
                     <div class="panel-heading">{{ Auth::user()->getFullName() }}'s Profile pic - <strong>Edit</strong> </div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('shop.avatar', ['shop' => Auth::user()->unique]) }}" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="POST" action="{{ route('shop.avatar', Auth::user()->unique) }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">

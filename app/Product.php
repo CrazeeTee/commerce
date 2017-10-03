@@ -12,18 +12,18 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'excerpt', 'unique', 'name', 'slug', 'description', 'size', 'color', 'price', 'old_price', 'new_price', 'availability', 'stock', 'rating', 'hits',
+        'unique', 'name', 'slug', 'image', 'description', 'size', 'color', 'price', 'old_price', 'new_price', 'availability',
+        'stock', 'rating', 'hits',
     ];
 
     /**
-     * @param $excerpt
-     * @return mixed
+     * @return string
      */
-    public static function byExcerpt($excerpt)
+    public function getRouteKeyName()
     {
-        return static::where('excerpt', $excerpt)->firstOrFail();
+        return 'unique';
     }
-    
+
     /**
      * @param $unique
      * @return \Illuminate\Database\Eloquent\Model|static
@@ -31,6 +31,56 @@ class Product extends Model
     public static function byUnique($unique)
     {
         return static::where('unique', $unique)->firstOrFail();
+    }
+
+    /**
+     * @param $name
+     * @return \Illuminate\Database\Eloquent\Model|static
+     */
+    public static function byName($name)
+    {
+        return static::where('name', $name)->firstOrFail();
+    }
+
+    /**
+     * @param $slug
+     * @return \Illuminate\Database\Eloquent\Model|static
+     */
+    public static function bySlug($slug)
+    {
+        return static::where('slug', $slug)->firstOrFail();
+    }
+    
+    /**
+     * @param $value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucfirst($value);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setDescriptionAttribute($value)
+    {
+        $this->attributes['description'] = ucfirst($value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return str_limit($this->name, 20);
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return str_limit($this->description, 200);
     }
 
     /**
@@ -72,63 +122,12 @@ class Product extends Model
     {
         return $this->belongsTo(Admin::class);
     }
-    
-    /**
-     * @param $value
-     */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = ucfirst($value);
-    }
 
     /**
-     * @param $value
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function setDescriptionAttribute($value)
+    public function images()
     {
-        $this->attributes['description'] = ucfirst($value);
-    }
-
-    /**
-     * @param $name
-     * @return \Illuminate\Database\Eloquent\Model|static
-     */
-    public static function byName($name)
-    {
-        return static::where('name', $name)->firstOrFail();
-    }
-
-    /**
-     * @param $slug
-     * @return \Illuminate\Database\Eloquent\Model|static
-     */
-    public static function bySlug($slug)
-    {
-        return static::where('slug', $slug)->firstOrFail();
-    }
-    
-    /**
-     * @param $unique
-     * @return \Illuminate\Database\Eloquent\Model|static
-     */
-    public static function byUnique($slug)
-    {
-        return static::where('unique', $unique)->firstOrFail();
-    }
-
-    /*
-     * @return $string
-     */
-    public function getName()
-    {
-        return str_limit($this->name, 20);
-    }
-
-    /*
-     * @return $string
-     */
-    public function getDescription()
-    {
-        return str_limit($this->description, 200);
+        return $this->hasMany(Image::class);
     }
 }

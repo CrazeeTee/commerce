@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Intervention;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserUpdateRequest;
-use App\Http\Requests\UserUploadAvatarRequest;
+use App\Http\Requests\UploadAvatarRequest;
+use App\Http\Requests\UpdateProfileRequest;
 
 class UserController extends Controller
 {
@@ -54,17 +54,17 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UserUpdateRequest|Request $request
+     * @param UpdateProfileRequest|Request $request
      * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UpdateProfileRequest $request, User $user)
     {
         $input = $request->all();
 
         $user->update($input);
 
-        return redirect()->route('user.show', ['user' => $user->unique])->with('success', 'Profile updated.');
+        return redirect()->route('user.show', $user->unique)->with('success', 'Profile updated.');
     }
 
     /**
@@ -81,30 +81,30 @@ class UserController extends Controller
     /**
      * Upload the specified resource in storage.
      *
-     * @param UserUploadAvatarRequest|Request $request
+     * @param UploadAvatarRequest|Request $request
      * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
-    public function uploadAvatar(UserUploadAvatarRequest $request, User $user)
+    public function uploadAvatar(UploadAvatarRequest $request, User $user)
     {
         $avatar=$request->file('avatar');
         $ext='.png';
 
-        $avatar_name = $user->id.$user->unique.$ext;
-        $avatar_path = 'storage/photos/avatars/';
+        $avatar_name = $user->id.uniqid().$ext;
+        $avatar_path = 'app/public/photos/avatars/';
 
-        if (!file_exists(public_path($avatar_path))):
-            mkdir(public_path($avatar_path), 0777, true);
+        if (! file_exists(storage_path($avatar_path))):
+            mkdir(storage_path($avatar_path), 0777, true);
         endif;
 
-        $save_file = public_path($avatar_path.$avatar_name);
+        $save_file = storage_path($avatar_path.$avatar_name);
 
         Intervention::make($avatar)->resize(400, 400)->save($save_file);
 
         $user->avatar = $avatar_name;
         $user->save();
 
-        return redirect()->route('user.show', ['user' => $user->unique])->with('success', 'Profile pic uploaded.');
+        return redirect()->route('user.show', $user->unique)->with('success', 'Profile pic uploaded.');
     }
 
     /**
@@ -115,8 +115,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        $user->softDelete();
 
-        return redirect()->route('index')->with('warning', 'User deleted. Hope we Helped you Grow.');
+        return redirect()->route('index')->with('warning', 'Deleted. Hope we Helped you Grow.');
     }
 }

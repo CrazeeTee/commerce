@@ -19,11 +19,11 @@ class ActivationTokenController extends Controller
 
         $token->delete();
 
-        if (!$token->admin->isAdmin()):
-            return redirect()->route('moderator.index')->with('success', 'Email verified and activated. Thank you');
+        if (! $token->admin->isAdmin()):
+            return redirect()->route('moderator.index')->with('success', 'Email verified. Thank you');
         endif;
 
-        return redirect()->route('admin.index')->with('success', 'Email verified and activated. Thank you');
+        return redirect()->route('admin.index')->with('success', 'Email verified. Thank you');
     }
 
     public function resend(Request $request)

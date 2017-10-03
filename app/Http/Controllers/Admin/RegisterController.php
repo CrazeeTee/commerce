@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'admin/home';
 
     /**
      * Create a new controller instance.
@@ -39,7 +39,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:admin');
     }
 
     /**
@@ -95,7 +95,7 @@ class RegisterController extends Controller
     {
         return Admin::create([
             'unique' => str_random(10),
-            'role' => 'expert',
+            'role' => 'moderator',
             'first_name' => $data['first_name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
